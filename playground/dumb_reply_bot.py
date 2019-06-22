@@ -1,19 +1,25 @@
 # https://praw.readthedocs.io/en/v6.3.1/tutorials/reply_bot.html
 from urllib.parse import quote_plus
-
+import os
 import praw
-import configparser
+# import configparser
 
 
-config = configparser.ConfigParser()
-config.read('./utils/config.ini')
+# config = configparser.ConfigParser()
+# config.read('./utils/config.ini')
+#
+# client_id = config.get('default', 'client_id')
+# client_secret=config.get('default', 'client_secret')
+# user_agent = config.get('default', 'user_agent')
+# # print(f'{client_id, client_secret, user_agent}')
+# username = config.get('default', 'username')
+# password = config.get('default', 'password')
 
-client_id = config.get('default', 'client_id')
-client_secret=config.get('default', 'client_secret')
-user_agent = config.get('default', 'user_agent')
-# print(f'{client_id, client_secret, user_agent}')
-username = config.get('default', 'username')
-password = config.get('default', 'password')
+client_id = os.environ.get('client_id')
+client_secret = os.environ.get('client_secret')
+user_agent = os.environ.get('user_agent')
+username = os.environ.get('username')
+password = os.environ.get('password')
 
 
 QUESTIONS = ["what is", "who is", "who are"]
@@ -46,6 +52,8 @@ def process_submission(submission):
             reply_text = REPLY_TEMPLATE.format(url_title)
             print(f"Replying to {submission.title}")
             submission.reply(reply_text)
+        else:
+            return "Nothing to reply to.."
 
 
 if __name__ == "__main__":

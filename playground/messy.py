@@ -1,22 +1,27 @@
 # Inspired by: https://praw.readthedocs.io/en/v6.3.1/getting_started/quick_start.html
 import pprint
 import praw
-import configparser
+import os
+# import configparser
 
 
 # readonly control valve :)
 r_o = False
 
-config = configparser.ConfigParser()
-config.read('./utils/config.ini')
-
-client_id = config.get('default', 'client_id')
-client_secret=config.get('default', 'client_secret')
-user_agent = config.get('default', 'user_agent')
-# print(f'{client_id, client_secret, user_agent}')
-username = config.get('default', 'username')
-password = config.get('default', 'password')
-
+# config = configparser.ConfigParser()
+# config.read('./utils/config.ini')
+#
+# client_id = config.get('default', 'client_id')
+# client_secret=config.get('default', 'client_secret')
+# user_agent = config.get('default', 'user_agent')
+# # print(f'{client_id, client_secret, user_agent}')
+# username = config.get('default', 'username')
+# password = config.get('default', 'password')
+client_id = os.environ.get('client_id')
+client_secret = os.environ.get('client_secret')
+user_agent = os.environ.get('user_agent')
+username = os.environ.get('username')
+password = os.environ.get('password')
 
 '''
 
