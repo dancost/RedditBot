@@ -1,3 +1,4 @@
+# https://praw.readthedocs.io/en/v6.3.1/tutorials/reply_bot.html
 from urllib.parse import quote_plus
 
 import praw
@@ -45,7 +46,6 @@ def process_submission(submission):
             reply_text = REPLY_TEMPLATE.format(url_title)
             print(f"Replying to {submission.title}")
             submission.reply(reply_text)
-            # Stop after first reply made
 
 
 if __name__ == "__main__":
