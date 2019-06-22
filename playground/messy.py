@@ -1,10 +1,14 @@
+# Inspired by: https://praw.readthedocs.io/en/v6.3.1/getting_started/quick_start.html
+import pprint
 import praw
 import configparser
 
+
+# readonly control valve :)
 r_o = False
 
 config = configparser.ConfigParser()
-config.read('config.ini')
+config.read('./utils/config.ini')
 
 client_id = config.get('default', 'client_id')
 client_secret=config.get('default', 'client_secret')
@@ -61,7 +65,7 @@ reddit = praw.Reddit(client_id=client_id,
 
 print(reddit.read_only)  # Output: False
 
-# obtain a subreddit
+# Obtain a subreddit
 
 subreddit = reddit.subreddit('romania')
 print("Name\n" + subreddit.display_name)
@@ -75,8 +79,19 @@ for submission in subreddit.hot(limit=10):
           f'Id: {submission.id}', f'{submission.url}', sep='\n')
     count += 1
 
+# Obtain redditor object
 for submission in subreddit.hot(limit=5):
     author = submission.author
     karma = reddit.redditor(author.name).link_karma
 
     print(f'Author: {author}\nKarma: {karma}')
+
+# Things to do with Submission objects and the aferent methods
+submission = reddit.submission(url='https://www.reddit.com/r/worldnews/comments/c3myvi/europe_braces_for_40_degree_temperatures_as/')
+best_comments = list(submission.comments)
+# print(*best_comments)
+submission.comment_sort = 'new'
+top_level_comments = list(submission.comments)
+# print(*top_level_comments)
+print(submission.title)
+pprint.pprint(vars(submission))
