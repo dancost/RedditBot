@@ -71,7 +71,12 @@ print("Description:\n" + subreddit.description)
 # Obtain a submission instance from a subreddit
 count = 1
 for submission in subreddit.hot(limit=10):
-    print(f'Submission no: {count}:\n', f'Title:{submission.title}', f'Score: {submission.score}',
+    print(f'Submission no: {count}:', f'Title:{submission.title}', f'Score: {submission.score}',
           f'Id: {submission.id}', f'{submission.url}', sep='\n')
     count += 1
 
+for submission in subreddit.hot(limit=5):
+    author = submission.author
+    karma = reddit.redditor(author.name).link_karma
+
+    print(f'Author: {author}\nKarma: {karma}')
