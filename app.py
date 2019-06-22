@@ -11,13 +11,14 @@ PAT = ''
 
 @app.route('/', methods=['GET'])
 def handle_verification():
-    print("Handling verification")
-    if request.args.get('hub.verify_token', '') == 'my_voice_is_my_password_verify_me':
-        print("Verification successful")
-        return request.args.get('hub.challenge', '')
-    else:
-        print("Verification failed")
-        return "Error invalid token"
+    return "Hello World"
+    # print("Handling verification")
+    # if request.args.get('hub.verify_token', '') == 'my_voice_is_my_password_verify_me':
+    #     print("Verification successful")
+    #     return request.args.get('hub.challenge', '')
+    # else:
+    #     print("Verification failed")
+    #     return "Error invalid token"
 
 
 @app.route('/', methods=['POST'])
