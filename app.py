@@ -47,7 +47,7 @@ def send_message(token, recipient, text):
     """Send the message text to recipient with id recipient.
     """
     url = "https://graph.facebook.com/v2.6/me/messages"
-    r = request.post(url=url,
+    r = requests.post(url=url,
                      params={"access_token": token},
                      data=json.dumps({
                          "recipient": {"id": recipient},
