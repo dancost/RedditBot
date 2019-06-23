@@ -36,6 +36,9 @@ def messaging_events(payload):
     """
     data = json.loads(payload)
 
+    for item in data:
+        print(item)
+
     messaging_events = data["entry"][0]["messaging"]
     print(f'Messaging events: {messaging_events}')
     for event in messaging_events:
