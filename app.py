@@ -37,19 +37,18 @@ def messaging_events(payload):
     data = json.loads(payload)
 
     messaging_events = data["entry"][0]["messaging"]
-    print(messaging_events)
     for event in messaging_events:
         if "message" in event and "text" in event["message"]:
             yield event["sender"]["id"], event["message"]["text"]
         else:
-            continue
-            # yield event["sender"]["id"], "Can't echo this!"
+            print(event)
+            yield event["sender"]["id"], "Can't echo this!"
 
 
 def send_message(token, recipient, text):
     """Send the message text to recipient with id recipient.
     """
-    url = "https://graph.facebook.com/v2.6/me/messages"
+    url = "https://graph.facebook.com/v3.3/me/messages"
     r = requests.post(url=url,
                      params={"access_token": token},
                      data=json.dumps({
@@ -58,7 +57,7 @@ def send_message(token, recipient, text):
                      }),
                      headers={'Content-type': 'application/json'})
     if r.status_code != 200:
-        print(r.content)
+        print(r.text)
 
 
 if __name__=='__main__':
