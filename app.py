@@ -41,7 +41,6 @@ def messaging_events(payload):
     for event in messaging_events:
         if "message" in event and "text" in event["message"]:
             yield event["sender"]["id"], event["message"]["text"]
-            break
         else:
             yield event["sender"]["id"], "Can't echo this!"
 
