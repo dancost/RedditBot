@@ -98,6 +98,7 @@ def send_message(token, recipient, text):
         subreddit_name = "GetMotivated"
 
     myUser = get_or_create(db.session, Users, name=recipient)
+    payload=''
 
     if subreddit_name == "worldnews":
         for submission in reddit.subreddit(subreddit_name).hot(limit=None):
