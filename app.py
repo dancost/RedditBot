@@ -92,6 +92,7 @@ def send_message(token, recipient, text):
 
     myUser = get_or_create(db.session, Users, name=recipient)
 
+
     if subreddit_name == "Showerthoughts":
         for submission in reddit.subreddit(subreddit_name).hot(limit=None):
             if submission.is_self:
