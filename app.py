@@ -14,7 +14,7 @@ fb_v_token = os.environ.get('fb_token')
 @app.route('/', methods=['GET'])
 def handle_verification():
     print("Handling verification")
-    if request.args.get('hub.verify_token', '') == 'my_voice_is_my_password_verify_me':
+    if request.args.get('hub.verify_token', '') == PAT:
         print("Verification successful")
         return request.args.get('hub.challenge', '')
     else:
