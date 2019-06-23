@@ -17,6 +17,7 @@ mpmath==1.1.0
 praw==6.3.1
 prawcore==1.0.1
 requests==2.21.0
+psycopg2==2.4.4
 selenium==3.141.0
 six==1.12.0
 soupsieve==1.9

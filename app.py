@@ -207,7 +207,6 @@ relationship_table = db.Table('relationship_table',
                               db.Column('post_id', db.Integer, db.ForeignKey('posts.id'), nullable=False),
                               db.PrimaryKeyConstraint('user_id', 'post_id'))
 
-
 class Users(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), nullable=False)
