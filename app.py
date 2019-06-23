@@ -42,7 +42,8 @@ def messaging_events(payload):
         if "message" in event and "text" in event["message"]:
             yield event["sender"]["id"], event["message"]["text"]
         else:
-            yield event["sender"]["id"], "Can't echo this!"
+            continue
+            # yield event["sender"]["id"], "Can't echo this!"
 
 
 def send_message(token, recipient, text):
