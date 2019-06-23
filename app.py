@@ -19,7 +19,7 @@ def handle_verification():
         return request.args.get('hub.challenge', '')
     else:
         print("Verification failed")
-        return str(PAT)
+        return "Error invalid token!"
 
 
 @app.route('/', methods=['POST'])
