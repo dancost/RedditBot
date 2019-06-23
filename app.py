@@ -41,7 +41,6 @@ def messaging_events(payload):
             yield event["sender"]["id"], event["message"]["text"]
         else:
             yield event["sender"]["id"], "Can't echo this!"
-            break
 
 
 def send_message(token, recipient, text):
