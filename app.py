@@ -38,7 +38,7 @@ quick_replies_list = [{
 {
     "content_type":"text",
     "title":"worldnews",
-    "payload":"worldnews",
+    "payload":"news",
 }
 ]
 
