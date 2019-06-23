@@ -41,7 +41,7 @@ def messaging_events(payload):
         if "message" in event and "text" in event["message"]:
             yield event["sender"]["id"], event["message"]["text"]
         else:
-            print(event)
+            print('EVENT!!!!!:::::' + event)
             yield event["sender"]["id"], "Can't echo this!"
 
 
