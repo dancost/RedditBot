@@ -15,7 +15,7 @@ def handle_verification():
     if request.args.get("hub.verify_token") == os.environ.get("verify_token"):
         return request.args.get("hub.challenge")
     else:
-        return "incorrect"
+        return "Error invalid token"
 
 
 @app.route('/', methods=['POST'])
@@ -38,7 +38,7 @@ def messaging_events(payload):
     messaging_events = data["entry"][0]["messaging"]
     for event in messaging_events:
         if "message" in event and "text" in event["message"]:
-            yield event["sender"]["id"], event["message"]["text"].encode('unicode_escape')
+            yield event["sender"]["id"], event["message"]["text"]
         else:
             yield event["sender"]["id"], "Can't echo this!"
 
