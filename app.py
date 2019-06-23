@@ -10,19 +10,12 @@ app = Flask(__name__)
 PAT = os.environ.get('PAT')
 
 
-
 @app.route('/', methods=['GET'])
 def handle_verification():
-    # when the endpoint is registered as a webhook, it must echo back
-    # the 'hub.challenge' value it receives in the query arguments
-    if request.args.get("hub.mode") == "subscribe" and request.args.get("hub.challenge"):
-        if not request.args.get("hub.verify_token") == os.environ["fbtoken"]:
-            print("Verification fail!")
-            return "Verification token mismatch", 403
-
-        return request.args["hub.challenge"], 200
-
-    return "Hello world", 200
+    if request.args.get("hub.verify_token") == os.environ.get("verify_token"):
+        return request.args.get("hub.challenge")
+    else:
+        return "incorrect"
 
 
 @app.route('/', methods=['POST'])
