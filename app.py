@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 # Facebook Page Access Token
 PAT = os.environ.get('PAT')
-fb_v_token = os.environ.get('fb_token')
+fb_v_token = os.environ.get('fbtoken')
 
 
 @app.route('/', methods=['GET'])
@@ -19,7 +19,7 @@ def handle_verification():
         return request.args.get('hub.challenge', '')
     else:
         print("Verification failed")
-        return "Error invalid token"
+        return str(PAT)
 
 
 @app.route('/', methods=['POST'])
