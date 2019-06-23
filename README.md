@@ -6,6 +6,6 @@ Deployed on keroku
 ### Environment details ###
 - Python 3.6+
 - Heroku account
-- Reddit script app added to user account and client_id, client_secret, user_agent added to PATH
-- Facebook app and page + verify_token and PageAccessToken (PAT) added to PATH
+- Reddit script app added to user account and client_id, client_secret, user_agent added to environemnt vars
+- Facebook app and page + verify_token and PageAccessToken (PAT) added to environment vars
 - Heroku app created and deployed on every GitHub repository commit
