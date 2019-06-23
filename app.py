@@ -34,6 +34,11 @@ quick_replies_list = [{
     "content_type":"text",
     "title":"Jokes",
     "payload":"Jokes",
+},
+{
+    "content_type":"text",
+    "title":"worldnews",
+    "payload":"worldnews",
 }
 ]
 
@@ -118,6 +123,47 @@ def send_message(token, recipient, text):
                                           "quick_replies": quick_replies_list}
                           }),
                           headers={'Content-type': 'application/json'})
+
+
+    elif subreddit_name == "worldnews":
+        for submission in reddit.subreddit(subreddit_name).hot(limit=None):
+            if submission.is_self:
+                query_result = Posts.query.filter(Posts.name == submission.id).first()
+                if query_result is None:
+                    myPost = Posts(submission.id, submission.title)
+                    myUser.posts.append(myPost)
+                    db.session.commit()
+                    payload = submission.title
+                    payload_text = submission.selftext
+                    break
+                elif myUser not in query_result.users:
+                    myUser.posts.append(query_result)
+                    db.session.commit()
+                    payload = submission.title
+                    payload_text = submission.selftext
+                    break
+                else:
+                    continue
+        r = requests.post("https://graph.facebook.com/v2.6/me/messages",
+                          params={"access_token": token},
+                          data=json.dumps({
+                              "recipient": {"id": recipient},
+                              "message": {"text": payload}
+                          }),
+                          headers={'Content-type': 'application/json'})
+        r = requests.post("https://graph.facebook.com/v2.6/me/messages",
+                          params={"access_token": token},
+                          data=json.dumps({
+                              "recipient": {"id": recipient},
+                              "message": {"text": payload_text,
+                                          "quick_replies": quick_replies_list}
+                          }),
+                          headers={'Content-type': 'application/json'})
+
+
+
+
+
 
     elif subreddit_name == "Jokes":
         for submission in reddit.subreddit(subreddit_name).hot(limit=None):

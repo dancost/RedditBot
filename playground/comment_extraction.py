@@ -28,18 +28,24 @@ reddit = praw.Reddit(client_id=client_id,
                      username=username,
                      password=password)
 
-submission = reddit.submission(id='3g1jfi')
+# submission = reddit.submission(id='3g1jfi')
+#
+# for top_level_comment in submission.comments:
+#     if isinstance(top_level_comment, MoreComments):
+#         continue
+#     print(top_level_comment.body)
+#
+# submission.comments.replace_more(limit=None)
+#
+# for top_level_comment in submission.comments:
+#     for second_level_comment in top_level_comment.replies:
+#         print(second_level_comment.body)
+#
+# for comment in submission.comments.list():
+#     print(comment.body)
+subreddit_name = "worldnews"
 
-for top_level_comment in submission.comments:
-    if isinstance(top_level_comment, MoreComments):
-        continue
-    print(top_level_comment.body)
-
-submission.comments.replace_more(limit=None)
-
-for top_level_comment in submission.comments:
-    for second_level_comment in top_level_comment.replies:
-        print(second_level_comment.body)
-
-for comment in submission.comments.list():
-    print(comment.body)
+for submission in reddit.subreddit(subreddit_name).hot(limit=None):
+    if submission.is_self:
+        print(submission.title)
+        print(submission.selftext)
