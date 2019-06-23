@@ -36,7 +36,8 @@ def messaging_events(payload):
     """
     data = json.loads(payload)
 
-    messaging_events = data["entry"][0]["messaging"]
+    messaging_events = data["entry"][1]["messaging"]
+    print(f'Messaging events: {messaging_events}')
     for event in messaging_events:
         if "message" in event and "text" in event["message"]:
             yield event["sender"]["id"], event["message"]["text"]
