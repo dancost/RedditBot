@@ -90,7 +90,7 @@ def send_message(token, recipient, text):
                     break
                 else:
                     continue
-        r = requests.post(url=url,
+    r = requests.post(url=url,
                           params={"access_token": token},
                           data=json.dumps({
                               "recipient": {"id": recipient},
@@ -98,7 +98,7 @@ def send_message(token, recipient, text):
                           }),
                           headers={'Content-type': 'application/json'})
 
-        r = requests.post(url=url,
+    r = requests.post(url=url,
                           params={"access_token": token},
                           data=json.dumps({
                               "recipient": {"id": recipient},
@@ -108,6 +108,8 @@ def send_message(token, recipient, text):
                           headers={'Content-type': 'application/json'})
     if r.status_code != requests.codes.ok:
         print(r.text)
+
+
 
 
 def get_or_create(session, model, **kwargs):
